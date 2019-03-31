@@ -2,7 +2,7 @@
 
 Overview: The student will develop a full­stack solution for a simple todo list application.
 
-##Frontend:
+## Frontend:
 * Implementation
     * The application shall be written in React.js
     * Any styling libraries, open­source packages, etc. can all be used ­ however, be prepared to weigh these choices if asked
@@ -28,7 +28,7 @@ Forgot Password
         * As with the Add a Todo screen, a successful submission will bring the user to the Todo Details screen
     * Deleting Todos
         * While this functionality should be included in the app, it is up to you to decide where you will include it
-##Backend:
+## Backend:
 * Authentication
     * As long as the requirements are met (login, register, and forgot password), implementation is up to the student. A few ideas include:
         * Session­based auth (NodeJS server)
@@ -49,7 +49,7 @@ Forgot Password
     * Any database type and implementation is fair game to use, it is up to the student to decide. Some ideas include:
         * MySQL
         * MongoDB
-##Extra Credit: 
+## Extra Credit: 
 Any of the items highlighted in blue above are slightly advanced topics and will demonstrate a students drive and willingness to learn. Implementing any of the below will also show the same (all extra credit is weighted equally):
 * Instead of writing a web­based application, write the frontend in React Native
     * FYI: if students do not have a mac, they can use Expo
