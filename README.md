@@ -1,11 +1,11 @@
 # Todo-List
 
-Overview: The student will develop a full­stack solution for a simple todo list application.
+Overview: The student will develop a full-stack solution for a simple todo list application.
 
 ## Frontend:
 * Implementation
     * The application shall be written in React.js
-    * Any styling libraries, open­source packages, etc. can all be used ­ however, be prepared to weigh these choices if asked
+    * Any styling libraries, open-source packages, etc. can all be used however, be prepared to weigh these choices if asked
     * Code should be commented as much as the student deems appropriate
 * Authentication
     * The application shall have simple authentication using a username and password
@@ -31,14 +31,14 @@ Forgot Password
 ## Backend:
 * Authentication
     * As long as the requirements are met (login, register, and forgot password), implementation is up to the student. A few ideas include:
-        * Session­based auth (NodeJS server)
-        * Token­based auth (NodeJS server)
-        * AWS Cognito
+        * Session-based auth (NodeJS server)
+        * Token-based auth (NodeJS server)
+        * `AWS Cognito`
     * While there is no wrong choice, be prepared to explain the pros and cons of the choice you make. It is okay to choose an ‘easier’ solution as long as you can explain the downfalls and what a better solution would look like
 * Todos
     * The service layer for todos may be written in any of the following
         * NodeJS (feel free to use any routing / other packages)
-        * Graphql
+        * `Graphql`
     * Your API endpoint for todos should have the following functionalities
         * Add a todo
         * Edit a todo
@@ -50,10 +50,10 @@ Forgot Password
         * MySQL
         * MongoDB
 ## Extra Credit: 
-Any of the items highlighted in blue above are slightly advanced topics and will demonstrate a students drive and willingness to learn. Implementing any of the below will also show the same (all extra credit is weighted equally):
-* Instead of writing a web­based application, write the frontend in React Native
+Any of the items `highlighted` above are slightly advanced topics and will demonstrate a students drive and willingness to learn. Implementing any of the below will also show the same (all extra credit is weighted equally):
+* Instead of writing a web-based application, write the frontend in `React Native`
     * FYI: if students do not have a mac, they can use Expo
     * If Expo does not support any native packages desired, write a detailed explanation of how you would implement that package
-* Write automated tests for the backend todo functionality using Chai and Mocha
-* If writing the frontend in React.js, automate frontend e2e tests using Cypress.io
-* If writing the frontend in React Native, automate the frontend e2e tests using Detox
+* Write automated tests for the backend todo functionality using `Chai` and `Mocha`
+* If writing the frontend in React.js, automate frontend e2e tests using `Cypress.io`
+* If writing the frontend in React Native, automate the frontend e2e tests using `Detox`
