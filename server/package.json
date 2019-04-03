@@ -9,10 +9,12 @@
   "author": "",
   "private": true,
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "express-graphql": "^0.7.1",
     "graphql": "^14.2.1",
-    "mongoose": "^5.4.21"
+    "mongoose": "^5.4.21",
+    "morgan": "^1.9.1"
   },
   "devDependencies": {
     "nodemon": "^1.18.10"
