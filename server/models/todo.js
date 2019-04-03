@@ -1,3 +1,4 @@
+//Todo Model: makes sure that input is valid
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;

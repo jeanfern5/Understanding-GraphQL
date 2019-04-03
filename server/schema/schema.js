@@ -2,45 +2,26 @@
 const { buildSchema } = require('graphql');
 
 module.exports = buildSchema(`
-    type Query {
-        todo(id: Int!): Todo
-        todos(title: String): [Todo]
-    }
     type Todo {
         _id: ID!
         title: String!
         date: String!
-        description: String
-
+        description: String!
     }
-    type Mutation {
-        editTodo(id: Int!, title: String!): Todo
+    input TodoInput {
+        title: String!
+        date: String!
+        description: String!
     }
-  
-`);
-
-let getTodo = function(args) {
-    let id = args.id;
-    return todosData.filter(todo => {
-        return todo.id == id;
-    })[0];
-}
-
-let getTodos = function(args) {
-    if (args.title){
-        let title = args.title;
-        return todosData.filter(todo => todo.title == title);
-    } else {
-        return todosData;
+    type RootQuery {
+        todos: [Todo!]!
     }
-}
+    type RootMutation {
+        addTodo(todoInput: TodoInput): Todo
+    }
+    schema {
+        query: RootQuery
+        mutation: RootMutation
+    }
+`)
 
-let editTodo = function({id, title}){
-    todosData.map(todo => {
-        if (todo.id === id) {
-            todo.title = title;
-            return todo;
-        }
-    })
-    return todosData.filter(todo => todo.id === id)[0];
-}
