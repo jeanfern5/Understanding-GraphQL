@@ -2,63 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const graphqlHTTP = require('express-graphql');
 const { buildSchema } = require('graphql');
-// const Schema = require('./schema');
+const mongoose = require('mongoose');
 
-//Sample Data
-const todos = []
-//     {
-//         _id: 1,
-//         title: 'Title 1',
-//         description: 'Learn Node.js by building real-world applications with Node, Express, MongoDB, Mocha, and more!',
-//         date: '4/1/2019',
-//     },
-//     {
-//         _id: 2,
-//         title: 'Title 1',
-//         description: 'Learn by example building & deploying real-world Node.js applications from absolute scratch',
-//         date: '4/2/2019',
-//     },
-//     {
-//         _id: 3,
-//         title: 'Title 3',
-//         description: 'An advanced JavaScript course for everyone! Scope, closures, prototypes, this, build your own framework, and more.',
-//         date: '4/3/2019',
-//     }
-// ]
-
-// let getTodo = function(args) {
-//     let id = args.id;
-//     return todosData.filter(todo => {
-//         return todo.id == id;
-//     })[0];
-// }
-
-// let getTodos = function(args) {
-//     if (args.title){
-//         let title = args.title;
-//         return todosData.filter(todo => todo.title == title);
-//     } else {
-//         return todosData;
-//     }
-// }
-
-// let editTodo = function({id, title}){
-//     todosData.map(todo => {
-//         if (todo.id === id) {
-//             todo.title = title;
-//             return todo;
-//         }
-//     })
-//     return todosData.filter(todo => todo.id === id)[0];
-// }
-
-// //Root Resolver
-// let root = {
-//     todo: getTodo, 
-//     todos: getTodos,
-//     editTodo: editTodo
-// };
-
+const Todo = require('./models/todo');
 
 // Create an express server and GraphQL endpoint
 const app = express();
@@ -90,22 +36,46 @@ app.use('/graphql', graphqlHTTP({
     `),
     rootValue: {
         todos: () => {
-            return todos;
+            return Todo
+            .find()
+            .then(todos => {
+                return todos.map(todo => {
+                    return { ...todo._doc, _id: todo.id }; //.id comes from mongoose
+                })
+            })
+            .catch(err => {
+                console.log('-----> todos Error:\n', err);
+                throw err;
+            });
         },
         addTodo: (args) => {
-            const todo = {
-                _id: Math.random().toString(),
+            const todo =   new Todo ({
                 title: args.todoInput.title,
                 date: args.todoInput.date,
-                description: args.todoInput.description
-            }
-            todos.push(todo);
-            return todo;
+                description: args.todoInput.description            
+            })
+
+            return todo
+            .save()
+            .then(result => {
+                console.log(result);
+                return { ...result._doc, _id: result.id }; //.id comes from mongoose
+            })
+            .catch(err => {
+                console.log('----> addTodo Error:\n', err);
+                throw err;
+            });
         }
     },
     graphiql: true
 }))
 
-app.listen(8080, () => {
-    console.log('\n========== Express GraphQL Server Now Running On localhost:8080/graphql ==========\n');  
+mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PWD}@cluster0-oomgm.mongodb.net/${process.env.MONGO_DB}?retryWrites=true`)
+.then(() => {
+    app.listen(8080, () => {
+        console.log('\n========== Express GraphQL Server Now Running On localhost:8080/graphql ==========\n');  
+    })
+})
+.catch(err => {
+    console.log('=====> MONGO CONNECTION ERROR:\n', err);
 })
